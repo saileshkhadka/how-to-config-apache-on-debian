@@ -1,0 +1,83 @@
+## Author: Sailesh Khadka ##
+## Date:06/12/2020 ##
+## Install and configure Apache web server on Debian ##
+
+Apache server is one of the most popular web server which is an open-source 
+and cross-platform HTTP server that powers a large percentage of the Internet’s websites. 
+
+# Pre-requisites
+# make sure you are logged in as sudo user.
+root@kali:~# 
+
+
+# Installing Apache
+#make sure you have updated your repository.
+
+root@kali:~#sudo apt update
+
+root@kali:~#sudo apt install apache2
+
+Apache is now installed on your machine and it will started automatically, make sure check the status i.e,
+
+root@kali:~#sudo systemctl status apache2
+
+It will shows the output as
+
+#apache2.service - The Apache HTTP Server
+   Loaded: loaded (/lib/systemd/system/apache2.service; enabled; vendor preset: 
+   Active: active (running) since Fri 2020-06-12 05:52:49 ; 21s ago
+   ...
+
+#You can adjust firewall 
+#UFW users can open HTTP (80) and HTTPS (443) ports by enabling the ‘Nginx Full’ profile:
+
+root@kali:~#sudo ufw allow 'Apache Full'
+
+#To verify installation 
+#To verify that Apache works correctly, open your browser, type your server IP address or domain name i.e
+
+http://10.0.2.15/ and you will see default page of an Apache
+
+#Virtual Host Configuration
+#configuration files stores in /etc/apache2 directory.
+
+#main config file is /etc/apache2/apache2.conf
+
+#Apache will listen to specified port in /etc/apache2/ports.conf file.
+
+#Apache Virtual Hosts files are located in the /etc/apache2/sites-available directory
+
+#You can activate a virtual host directive by creating a symlink using the a2ensite command from the configuration files found in the sites-available directory to the sites-enabled directory.
+# To deactivate a virtual host use the a2dissite command.
+
+# if your domain name is mydomain.com then the domain configuration file should be named
+ /etc/apache2/sites-available/mydomain.com.conf
+
+#Files containing global configuration fragments are stored in the /etc/apache2/conf-available directory
+
+#Apache log files (access.log and error.log) are located in the /var/log/apache directory. It is recommended to use different access and error log files for each virtual host.
+
+#The most common locations for webroot include:
+/home/<user_name>/<site_name>
+/var/www/<site_name>
+/var/www/html/<site_name>
+/opt/<site_name>
+
+#You can now start deploying your applications and use Apache as a web or proxy server
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
